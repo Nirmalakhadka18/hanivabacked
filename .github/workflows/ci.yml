@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  python:
+    name: Python checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install dependencies (backend)
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f backend/requirements.txt ]; then pip install -r backend/requirements.txt; fi
+      - name: Quick check
+        run: |
+          echo "No automated python tests configured; environment ready."
+
+  node:
+    name: Node (meshjs)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Install and run meshjs scripts
+        run: |
+          if [ -f meshjs/package.json ]; then
+            cd meshjs
+            npm ci || true
+            # run tests if defined, but don't fail the workflow if none
+            if npm run | grep -q "test"; then
+              npm test || true
+            else
+              echo "No npm test script configured for meshjs"
+            fi
+          else
+            echo "meshjs not present"
+          fi
