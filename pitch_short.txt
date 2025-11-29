@@ -1,0 +1,2 @@
+Chat-to-Pay (30s):
+"A conversational smart wallet that lets users send Cardano payments by chat. The app parses natural language (OpenAI), builds unsigned Cardano transactions via MeshJS, asks the user to sign in their wallet (Eternl), submits through Hydra, and pins immutable receipts to IPFS. Transaction history syncs to Supabase for audits and UX."

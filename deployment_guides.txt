@@ -1,0 +1,5 @@
+Deployment notes:
+- Render/Railway: deploy meshjs and fastapi as two services (Docker containers). Set env vars securely.
+- Use a production Hydra node or Blockfrost for reliable Cardano queries. For tx submission use hydra/provider or blockfrost's /api/tx/submit.
+- IPFS pinning: web3.storage or nft.storage are good choices.
+- For high throughput, consider queueing tx submits and tracking confirmations asynchronously.
