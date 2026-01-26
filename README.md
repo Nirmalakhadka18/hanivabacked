@@ -1,4 +1,4 @@
-﻿# hanivabacked — Chat-to-Pay Backend
+﻿# Hanivabacked — Chat-to-Pay Backend
 
 A full-stack Chat-to-Pay payment system combining a **FastAPI backend** with a **Node.js MeshJS microservice** for Cardano blockchain integration.
 
